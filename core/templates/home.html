@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+    {% block content %}
+        {% if user.is_authenticated %}
+            <p> Hello {{user.get_username}}     </p>
+        {% endif %}
+        
+        {% for post in posts %}
+            <h4> <a href="{% url 'view' post.id %}"> {{post.heading}}  </a></h4>
+            <p>By {{post.author.username }} <br> Posted On {{ post.pubDate|date:"SHORT_DATE_FORMAT" }}</p>
+
+        {% endfor %}
+    {% endblock %}

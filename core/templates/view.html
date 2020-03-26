@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3> {{post.heading }}</h3>
+<h5>By {{post.author.username }} <br> Posted On {{post.pubDate|date:"SHORT_DATE_FORMAT"}} {{post.pubDate|time:"H:i"}} </h5> 
+
+<p>{{post.article}}</p>
+
+{% endblock %}

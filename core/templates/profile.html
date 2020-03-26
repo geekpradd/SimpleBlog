@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p> Hello {{ user.username }} </p>
+
+    
+        <p>Posts: </p>
+        {% for post in posts %}
+            <h4> {{post.heading }} </h4>
+            <p> {{post.article }} </p>
+            <a href="{% url 'edit' post.id %}" class="btn btn-info"> Edit </a>
+        {% empty %}
+        <p> You have not made any posts </p>
+        {% endfor %}
+
+    {% endblock %}
