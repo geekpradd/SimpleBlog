@@ -4,4 +4,4 @@ This is a simple blog system built on Django, intended as the submission for Dev
 The django toolchain without any external plugins has been used for this.
 Bootstrap is used for the CSS. The CSS has been partly taken (and modified) from a StartBootstrap theme.
 
-
+Demo can be found on: http://geekpradd.pythonanywhere.com/
