@@ -1,25 +1,59 @@
 {% extends 'base.html' %}
+{% block header %}
+
+<div class="overlay"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+                <h1>Login into SimpleBlog </h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
 {% block content %}
-    {% if form.errors %}
-        <p> Your username and password did not match </p>
-    {% endif %}
-    {% if user.is_authenticated %}
-        <p> You are already logged in!</p>
-    {% else %}
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <table>
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-            </table>
-            <input type="submit" value="Login" />
-            
-        </form>
-    {% endif %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% for message in messages %}
+            <p> {{message}} </p>
+            {% endfor %}
+            {% if form.errors %}
+            <p> Your username and password did not match </p>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <p> You are already logged in!</p>
+            {% else %}
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            {{ form.username.label_tag }}
+                        </div>
+                        <div class="col">
+                            {{ form.username }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ form.password.label_tag}}
+                        </div>
+                        <div class="col">
+                            {{ form.password }}
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <center><input type="submit" value="Login" class="btn btn-info" /> </center>
+
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

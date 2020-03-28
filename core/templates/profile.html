@@ -1,15 +1,52 @@
 {% extends 'base.html' %}
+{% block header %}
+
+<div class="overlay"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+                <h1>Hello {{ user.username }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
 {% block content %}
-    <p> Hello {{ user.username }} </p>
 
-    
-        <p>Posts: </p>
-        {% for post in posts %}
-            <h4> {{post.heading }} </h4>
-            <p> {{post.article }} </p>
-            <a href="{% url 'edit' post.id %}" class="btn btn-info"> Edit </a>
-        {% empty %}
-        <p> You have not made any posts </p>
-        {% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>
+                Your Blog Posts are:
+            </p>
 
-    {% endblock %}
+
+            {% for post in posts %}
+            <div class="post-preview">
+                <a href="{% url 'view' post.id %}">
+                    <h2 class="post-title">
+                        {{post.heading}}
+                    </h2>
+                    <h3 class="post-subtitle">
+                        {{post.subheading}}
+                    </h3>
+                </a>
+
+                <p class="post-meta">Posted by
+                    {{post.author.username }}
+                    on {{ post.pubDate|date:"SHORT_DATE_FORMAT" }}. <a href="{% url 'edit' post.id %}"> Edit Post. </a>
+                    <a href="{% url 'delete' post.id %}"> Delete Post. </a> </p>
+            </div>
+            <hr>
+
+            {% empty %}
+            <p> You have not made any Posts</p>
+            {% endfor %}
+
+            <p><a href="{% url 'createPost' %}"> Create Post </a></p>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

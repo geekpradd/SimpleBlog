@@ -1,12 +1,53 @@
 {% extends 'base.html' %}
-    {% block content %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <p>
         {% if user.is_authenticated %}
-            <p> Hello {{user.get_username}}     </p>
+        Hello {{user.get_username}}.
+        {% else %}
+        Hello there. You need to sign up to create new posts.
         {% endif %}
-        
-        {% for post in posts %}
-            <h4> <a href="{% url 'view' post.id %}"> {{post.heading}}  </a></h4>
-            <p>By {{post.author.username }} <br> Posted On {{ post.pubDate|date:"SHORT_DATE_FORMAT" }}</p>
+        Blog Posts are:
+      </p>
 
-        {% endfor %}
-    {% endblock %}
+
+      {% for post in posts %}
+      <div class="post-preview">
+        <a href="{% url 'view' post.id %}">
+          <h2 class="post-title">
+            {{post.heading}}
+          </h2>
+          <h3 class="post-subtitle">
+            {{post.subheading}}
+          </h3>
+        </a>
+        <p class="post-meta">Posted by
+          {{post.author.username }}
+          on {{ post.pubDate|date:"SHORT_DATE_FORMAT" }} </p>
+      </div>
+      <hr>
+
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block header %}
+
+<div class="overlay"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="site-heading">
+        <h1>SimpleBlog</h1>
+        <span class="subheading">A Simple Blog system built on Django</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

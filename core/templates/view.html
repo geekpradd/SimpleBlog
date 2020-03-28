@@ -1,8 +1,32 @@
 {% extends 'base.html' %}
-{% block content %}
-<h3> {{post.heading }}</h3>
-<h5>By {{post.author.username }} <br> Posted On {{post.pubDate|date:"SHORT_DATE_FORMAT"}} {{post.pubDate|time:"H:i"}} </h5> 
+{% block header %}
 
-<p>{{post.article}}</p>
+<div class="overlay"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="post-heading">
+        <h1>{{post.heading}}</h1>
+        <h2 class="subheading">{{post.subheading}}</h2>
+        <span class="meta">By {{post.author.username }}. Posted On {{post.pubDate|date:"SHORT_DATE_FORMAT"}}.
+          {% if post.author.username == user.username %}
+          <a href="{% url 'edit' post.id %}"> Edit Post </a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block content %}
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>{{post.article|linebreaks}}</p>
+      </div>
+    </div>
+  </div>
+</article>
 
 {% endblock %}

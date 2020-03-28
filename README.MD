@@ -2,6 +2,6 @@
 
 This is a simple blog system built on Django, intended as the submission for DevCom Selection Task.
 The django toolchain without any external plugins has been used for this.
-Bootstrap is used for the CSS.
+Bootstrap is used for the CSS. The CSS has been partly taken (and modified) from a StartBootstrap theme.
 
 
